@@ -3,29 +3,6 @@
 ## Objective
 Create a reusable Card component for your personal portfolio that displays your information using props. This assignment will help you understand component structure, props passing, and component composition.
 
-## Requirements
-
-### Functional Requirements
-- Create a Card component that accepts props for personal information
-- Display at least 5 different pieces of information (name, title, bio, skills, etc.)
-- Use the Card component to create at least 2 different cards with different information
-- Include a profile image (can use placeholder images)
-- Add basic styling to make the cards visually appealing
-
-### Technical Requirements
-- Use functional component syntax
-- Implement proper prop destructuring
-- Follow React naming conventions (PascalCase for components)
-- Export components properly
-- Use JSX syntax correctly
-- Include proper keys for any lists
-
-### Submission Format
-- Create a new Vite project called "portfolio-practice"
-- All code should be in the src/ folder
-- Components should be in a components/ folder
-- Submit the entire project folder
-
 ## Getting Started
 
 ### Setup Instructions
@@ -61,149 +38,43 @@ portfolio-practice/
 
 ## Step-by-Step Instructions
 
-### Step 1: Create the Card Component (15 minutes)
+### Step 1: Create the Card Component
 
-1. Create `src/components/Card.jsx`:
-   ```jsx
-   function Card({ name, title, bio, skills, image, email }) {
-     return (
-       <div className="card">
-         <img src={image} alt={`${name}'s profile`} />
-         <div className="card-content">
-           <h2>{name}</h2>
-           <h3>{title}</h3>
-           <p>{bio}</p>
-           <div className="skills">
-             <h4>Skills:</h4>
-             <ul>
-               {skills.map((skill, index) => (
-                 <li key={index}>{skill}</li>
-               ))}
-             </ul>
-           </div>
-           <p className="email">{email}</p>
-         </div>
-       </div>
-     );
-   }
+1. **Create the Card component file**:
+   - Create a new file `src/components/Card.jsx`
+   - Write a functional component called `Card` that accepts props for: name, title, bio, skills, image, and email
+   - Use proper prop destructuring in the function parameters
+   - Return JSX that displays all the passed props
+   - Include an image with proper alt text
+   - Map over the skills array to display each skill as a list item
+   - Remember to add a `key` prop to the mapped list items
+   - Export the component as default
 
-   export default Card;
-   ```
+2. **Add CSS styling**:
+   - Add styles to `src/index.css` to make your cards look professional
+   - Style the card container with border, padding, and shadow
+   - Style the image to be responsive and properly sized
+   - Style the text elements with appropriate colors and spacing
+   - Style the skills list to look like tags or badges
+   - Make sure the email stands out with different styling
 
-2. Add basic CSS styling to `src/index.css`:
-   ```css
-   .card {
-     border: 1px solid #ddd;
-     border-radius: 8px;
-     padding: 20px;
-     margin: 20px;
-     max-width: 300px;
-     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-   }
+### Step 2: Use the Card Component in App.jsx
 
-   .card img {
-     width: 100%;
-     height: 200px;
-     object-fit: cover;
-     border-radius: 4px;
-     margin-bottom: 15px;
-   }
+1. **Import and use the Card component**:
+   - Import your Card component at the top of `src/App.jsx`
+   - Create two objects with different person data (include name, title, bio, skills array, image URL, and email)
+   - Use placeholder images from a service like placeholder.com or via.placeholder.com
+   - Render both Card components, passing the data as props
+   - Add a title for your portfolio section
+   - Wrap your cards in a container div
 
-   .card-content h2 {
-     color: #333;
-     margin-bottom: 5px;
-   }
+2. **Add layout styling**:
+   - Style the cards container to display cards in a row with flexbox
+   - Make the layout responsive so cards wrap to new lines on smaller screens
+   - Center the main title and add appropriate spacing
+   - Add some padding to the main App container
 
-   .card-content h3 {
-     color: #666;
-     margin-bottom: 10px;
-   }
-
-   .card-content p {
-     color: #555;
-     line-height: 1.5;
-     margin-bottom: 15px;
-   }
-
-   .skills ul {
-     list-style-type: none;
-     padding: 0;
-   }
-
-   .skills li {
-     background-color: #f0f0f0;
-     padding: 5px 10px;
-     margin: 5px 5px 5px 0;
-     border-radius: 15px;
-     display: inline-block;
-   }
-
-   .email {
-     font-style: italic;
-     color: #007bff;
-   }
-   ```
-
-### Step 2: Use the Card Component in App.jsx (10 minutes)
-
-1. Update `src/App.jsx`:
-   ```jsx
-   import Card from './components/Card';
-
-   function App() {
-     const person1 = {
-       name: "Dylan Smith",
-       title: "Full-Stack Developer",
-       bio: "Passionate about creating web applications that solve real-world problems. I love learning new technologies and building projects that make a difference.",
-       skills: ["JavaScript", "React", "Python", "Flask", "SQL"],
-       image: "https://via.placeholder.com/300x200/007bff/ffffff?text=Dylan",
-       email: "dylan@example.com"
-     };
-
-     const person2 = {
-       name: "Sarah Johnson",
-       title: "Frontend Developer",
-       bio: "Creative developer focused on user experience and modern web design. I enjoy turning complex problems into simple, beautiful solutions.",
-       skills: ["HTML", "CSS", "JavaScript", "React", "UI/UX"],
-       image: "https://via.placeholder.com/300x200/28a745/ffffff?text=Sarah",
-       email: "sarah@example.com"
-     };
-
-     return (
-       <div className="App">
-         <h1>Team Portfolio</h1>
-         <div className="cards-container">
-           <Card {...person1} />
-           <Card {...person2} />
-         </div>
-       </div>
-     );
-   }
-
-   export default App;
-   ```
-
-2. Add container styling to `src/index.css`:
-   ```css
-   .cards-container {
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: center;
-     gap: 20px;
-   }
-
-   .App {
-     text-align: center;
-     padding: 20px;
-   }
-
-   .App h1 {
-     color: #333;
-     margin-bottom: 30px;
-   }
-   ```
-
-### Step 3: Test and Customize (10 minutes)
+### Step 3: Test and Customize
 
 1. Open your browser and navigate to `http://localhost:5173`
 2. Verify that both cards display correctly
@@ -211,60 +82,66 @@ portfolio-practice/
 4. Try changing the styling (colors, fonts, spacing)
 5. Add more cards with different information
 
-### Step 4: Add Your Own Information (10 minutes)
+### Step 4: Add Your Own Information
 
-1. Replace the placeholder data with your own information
-2. Use a real profile picture or find a suitable placeholder
-3. Add your actual skills and experience
-4. Make sure the email and other details are realistic
+1. **Personalize your portfolio**:
+   - Replace the placeholder data with your own information
+   - Use a real profile picture or find a suitable placeholder image
+   - Add your actual skills and experience
+   - Make sure the email and other details are realistic
+   - Consider adding a third card with information about a friend or colleague
 
 ## Bonus Challenges
 
-### Challenge 1: Enhanced Styling (15 minutes)
-- Add hover effects to the cards
-- Implement a responsive design that works on mobile
-- Add animations or transitions
-- Create a more sophisticated color scheme
+### Challenge 1: Enhanced Styling
+- Add hover effects to the cards (try transform, box-shadow, or color changes)
+- Implement a responsive design that works well on mobile devices
+- Add smooth animations or transitions using CSS
+- Create a more sophisticated color scheme with CSS custom properties
 
-### Challenge 2: Additional Props (10 minutes)
-- Add props for social media links
-- Include a "hire me" button
-- Add a rating or experience level
-- Include contact information
+### Challenge 2: Additional Props
+- Add props for social media links (LinkedIn, GitHub, Twitter)
+- Include a "hire me" or "contact" button
+- Add a rating or experience level indicator
+- Include additional contact information
 
-### Challenge 3: Component Composition (15 minutes)
-- Create a Header component for your portfolio
+### Challenge 3: Component Composition
+- Create a Header component for your portfolio with your name and navigation
 - Create a Footer component with copyright information
 - Create a Layout component that uses Header and Footer
-- Use the Layout component to wrap your cards
+- Use the Layout component to wrap your cards and create a complete page structure
 
-### Challenge 4: Advanced Features (20 minutes)
-- Add a "Show More/Show Less" toggle for the bio
-- Implement a skills filter or search
-- Add click handlers to make cards interactive
-- Create a modal that opens when clicking on a card
+### Challenge 4: Advanced Features
+- Add a "Show More/Show Less" toggle for the bio text
+- Implement a skills filter or search functionality
+- Add click handlers to make cards interactive (maybe show more details)
+- Create a modal that opens when clicking on a card to show additional information
 
 ## Checkpoints for Validation
 
 ### Checkpoint 1: Component Structure
 - [ ] Card component is properly defined and exported
-- [ ] Props are destructured correctly
-- [ ] Component uses PascalCase naming
+- [ ] Props are destructured correctly in the function parameters
+- [ ] Component uses PascalCase naming convention
+- [ ] All required props are being used in the JSX
 
 ### Checkpoint 2: Props Usage
-- [ ] All required props are being passed
-- [ ] Props are used correctly in JSX
-- [ ] Lists have proper keys
+- [ ] All required props are being passed from App.jsx
+- [ ] Props are used correctly in the JSX (with curly braces for variables)
+- [ ] Lists have proper keys for the mapped items
+- [ ] Image has appropriate alt text
 
 ### Checkpoint 3: Styling
-- [ ] Cards have visual styling
-- [ ] Layout is responsive
-- [ ] Information is clearly organized
+- [ ] Cards have visual styling (borders, shadows, padding)
+- [ ] Layout is responsive and works on different screen sizes
+- [ ] Information is clearly organized and readable
+- [ ] Skills are displayed as styled tags or badges
 
 ### Checkpoint 4: Functionality
-- [ ] Multiple cards display correctly
+- [ ] Multiple cards display correctly with different data
 - [ ] All information is showing properly
-- [ ] No console errors
+- [ ] No console errors in the browser
+- [ ] Page loads and renders without issues
 
 ## Resources
 
@@ -279,25 +156,26 @@ portfolio-practice/
 
 ### Troubleshooting Tips
 - **Component not rendering**: Check export/import statements
-- **Props not working**: Verify prop names match exactly
+- **Props not working**: Verify prop names match exactly between parent and child
 - **Styling issues**: Check CSS class names and selectors
 - **Console errors**: Open browser dev tools and check for errors
 
 ## Success Criteria
 
 By the end of this assignment, you should be able to:
-- ✅ Create a functional React component
-- ✅ Pass and use props effectively
-- ✅ Structure components properly
-- ✅ Apply basic styling to components
-- ✅ Compose multiple components together
-- ✅ Follow React naming conventions
-- ✅ Use JSX syntax correctly
+- ✅ Create a functional React component from scratch
+- ✅ Pass and use props effectively between components
+- ✅ Structure components properly with good naming conventions
+- ✅ Apply CSS styling to make components visually appealing
+- ✅ Compose multiple components together to build a complete UI
+- ✅ Follow React naming conventions and best practices
+- ✅ Use JSX syntax correctly with proper key props
 
 ## Next Steps
 
 After completing this assignment, you'll be ready for the next lesson where we'll learn about:
-- State management with useState
-- Event handling
-- Making components interactive
-- Building dynamic user interfaces
+- State management with useState hook
+- Event handling and user interactions
+- Making components interactive and dynamic
+- Building more complex user interfaces
+
